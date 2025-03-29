@@ -1,0 +1,85 @@
+add_newline = true
+format = """$directory$character"""
+right_format = """$all"""
+
+[character] 
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+[directory]
+read_only = " 󰌾"
+style = "bold blue"
+
+[docker_context]
+symbol = " "
+
+[gcloud]
+disabled = true
+
+[fossil_branch]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[git_status]
+modified = " 🛠️"
+stashed = " 📦"
+ahead = " 🏎️"
+behind = " 🐢"
+diverged = " 🔱"
+
+[git_commit]
+tag_symbol = '  '
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+disabled = true
+symbol = "󰍛 "
+
+[nim]
+symbol = "󰆥 "
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Debian = " "
+Linux = " "
+Macos = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Ubuntu = " "
+Unknown = " "
+
+[python]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
+
+[rust]
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[time]
+format = "🕙 [$time]($style) "
+time_format = "%T" 
+disabled = false
+
+

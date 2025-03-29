@@ -1,0 +1,11 @@
+font-family = BerkeleyMono Nerd Font
+font-size = 14
+
+window-save-state = always
+window-height = 40
+window-width = 140
+
+mouse-hide-while-typing = true
+
+
+theme = "Kanagawa Wave"
