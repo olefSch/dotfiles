@@ -7,7 +7,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 ## ----- Alias -----
 alias cat='bat'
 alias df="duf"
-alias find="fzf --preview 'bat --style=numbers --color=always {}'"
+alias f="fzf --preview 'bat --style=numbers --color=always {}'"
 alias man="tldr"
 alias update="topgrade"
 alias ls="ls --color"
