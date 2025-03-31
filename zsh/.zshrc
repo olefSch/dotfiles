@@ -81,5 +81,8 @@ bindkey '^k' up-history
 bindkey '^j' down-history
 bindkey '^f' accept-line
 
+## ----- Neofetch -----
+neofetch
+
 ## Fortune Cowsay
 fortune | cowsay

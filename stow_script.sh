@@ -73,8 +73,9 @@ echo "This script will use stow to create symlinks from the dotfiles directory."
 stow_package "zsh"
 stow_package "starship" ".config/starship"
 stow_package "ghostty" ".config/ghostty"
-stow_package "topgrade" ".config/"
+stow_package "topgrade" ".config"
 stow_package "atuin" ".config/atuin"
+stow_package "neofetch" ".config/neofetch"
 
 echo "Script finished."
 
