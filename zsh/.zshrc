@@ -11,8 +11,6 @@ alias f="fzf --preview 'bat --style=numbers --color=always {}'"
 alias man="tldr"
 alias update="topgrade"
 alias ls="ls --color"
-alias vim="nvim"
-alias v="nvim"
 alias cd="z"
 
 ## ----- Zinit -----
@@ -85,4 +83,4 @@ bindkey '^f' accept-line
 neofetch
 
 ## Fortune Cowsay
-fortune | cowsay
+fortune | cowsay -f vader
