@@ -1,6 +1,6 @@
 [misc]
 # I use topgrade out of the box and I only need to disable some updates
-disable = ["uv", "containers", "git_repos"]
+disable = ["uv", "containers", "git_repos", "pnpm", "node"]
 # --> uv is installed with brew 
 # --> containers usually include selfwritten ones and then it will fail
 # --> git repos should not be updated this should be my manual task 

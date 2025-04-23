@@ -1,10 +1,12 @@
 return {
-  { "rebelot/kanagawa.nvim" },
-
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "kanagawa-wave",
-    },
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    config = function()
+      require("kanagawa").setup({
+        -- comming
+      })
+      vim.cmd("colorscheme kanagawa-wave") 
+    end,
   },
 }

@@ -78,9 +78,9 @@ stow_package "atuin" ".config/atuin"
 stow_package "neofetch" ".config/neofetch"
 
 # rm only for nvim directories
-rm -r ~/.local/state/nvim
-rm -r ~/.local/share/nvim
-rm -r ~/.cache/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.cache/nvim
 stow_package "nvim" ".config/nvim"
 
 echo "Script finished."
