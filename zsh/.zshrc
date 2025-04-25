@@ -12,6 +12,7 @@ alias man="tldr"
 alias update="topgrade"
 alias ls="ls --color"
 alias v="nvim"
+alias vim="nvim"
 alias cd="z"
 
 ## ----- Zinit -----

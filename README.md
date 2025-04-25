@@ -34,9 +34,19 @@ In the .zshrc (software I use and configure there):
 
 * **Zoxide**
 
+* **bat**
+
+* **tldr**
+
+* **duf**
+
 Needed for Neovim:
 
 * **Ripgrep**: Needed for Telescope
+
+Lsp must haves:
+
+* **pyright**: I needed to add it manually due to a npm error :(
 
 ##   Installation
 
