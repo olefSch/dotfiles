@@ -62,6 +62,10 @@ if [ -f '/Users/schildt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/s
 ## ----- Java Path -----
 PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 
+## ----- Node Shit -----
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm, without auto-using the default version
+
 ## ----- Starship -----
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
@@ -84,3 +88,7 @@ bindkey '^f' accept-line
 ## ----- Neofetch -----
 neofetch
 
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

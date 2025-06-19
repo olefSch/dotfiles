@@ -18,6 +18,10 @@ return {
         ensure_installed = {
           "helm_ls",
           "lua_ls",
+          "pyright",
+          "ruff",
+          "stylua",
+          "luacheck",
         },
         handlers = {
           function(server_name)
@@ -53,9 +57,6 @@ return {
           vim.keymap.set('n', '<F4>', '<cmd>vim.lsp.buf.code_action()<cr>', opts)
         end,
       })
-
-      -- I need to add pyright for python here and had to install it locally due to npm issues :(
-      require('lspconfig').pyright.setup({})
     end,
   },
 }
