@@ -60,7 +60,11 @@ if [ -f '/Users/schildt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/s
 
 
 ## ----- Java Path -----
-PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+
+## ----- Spark -----
+export SPARK_HOME=$(brew --prefix apache-spark)/libexec
+export PATH=$SPARK_HOME/bin:$PATH
 
 ## ----- Node Shit -----
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -94,3 +98,8 @@ export CPPFLAGS="-I$(brew --prefix openssl)/include"
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/schildt/.lmstudio/bin"
+
