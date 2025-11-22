@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# system junk (Mac)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# vim/nvim artifacts
+*.swp
+*.swo
+session.vim
+.netrwhist
+
+# pre-commit / testing caches
+.cache/
+.pytest_cache/
