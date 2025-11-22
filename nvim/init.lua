@@ -1,2 +1,2 @@
-require("rabbit_hole")
-print("here we go")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
