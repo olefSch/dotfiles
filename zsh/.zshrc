@@ -1,6 +1,12 @@
 ## ----- Init Env Vars -----
 export XDG_CONFIG_HOME="$HOME/.config"
 
+if [ -f "$HOME/.env" ]; then
+  set -a
+  source "$HOME/.env"
+  set +a
+fi
+
 ## ----- Homebrew -----
 export PATH="/opt/homebrew/bin:$PATH"
 
@@ -102,4 +108,3 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/schildt/.lmstudio/bin"
-
