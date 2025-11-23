@@ -1,91 +1,134 @@
-#   My Dotfiles
+# ⚡️ macOS Dotfiles
 
-##   Prerequisites
+This repository hosts my personal development environment configuration for macOS. It is built around **Zsh**, **Neovim**, and **Ghostty**, using **Zinit** to manage plugins efficiently.
 
-###   Base
+![bmo](./images/bmo.png)
 
-* **Zsh**:   Foundational shell
+## 🛠 My Tech Stack
 
-* **Homebrew**: To install packages on macOS
+Here are the core tools and CLIs I use in my daily workflow:
 
-###   Tools Which Get Configured
+### Core System
 
-* **Atuin**:   Command history with stats and fuzzy search (written in Rust)
+- **OS**: macOS
 
-* **Ghostty**: Terminal emulator (fast due to Zig codebase)
+- **Terminal**: [Ghostty](https://github.com/ghostty-org/ghostty)
 
-* **Neofetch**:   Cool theme with stats for startup
+- **Shell**: Zsh (managed with [Zinit](https://github.com/zdharma-continuum/zinit))
 
-* **Neovim**: Editor -> Fork of Vim
+- **Prompt**: [Starship](https://starship.rs/)
 
-* **Starship**:   Prompt customization (fast because written in Rust)
+- **Editor**: [Neovim](https://neovim.io/) ([LazyVim](https://www.lazyvim.org/) distribution)
 
-* **Topgrade**:   Upgrades basically everything for you
+- **Font**: Nerd Fonts (Required for icons)
 
-###   Tools Which Are Needed or Used in the Config
+### Core Utilities
 
-In the .zshrc (software I use and configure there):
+I have replaced many standard Unix commands with modern Rust-based alternatives for better performance and visuals.
 
-* **gcloud** -> needs Python
+|                        Tool                         |           Description           |    Replaced    |
+| :-------------------------------------------------: | :-----------------------------: | :------------: |
+|        [bat](https://github.com/sharkdp/bat)        | Syntax highlighted file reading |     `cat`      |
+|        [duf](https://github.com/muesli/duf)         |     Disk Usage/Free Utility     |      `df`      |
+|     [tldr](https://github.com/tldr-pages/tldr)      |   Fast implementation of tldr   |     `man`      |
+|   [zoxide](https://github.com/ajeetdsouza/zoxide)   |       Smarter cd command        |      `cd`      |
+|       [fzf](https://github.com/junegunn/fzf)        |    Command-line fuzzy finder    |     search     |
+|      [atuin](https://github.com/atuinsh/atuin)      |      Magical shell history      |   `history`    |
+| [topgrade](https://github.com/topgrade-rs/topgrade) |       Upgrade everything        | manual updates |
+| [neofetch](https://github.com/dylanaraps/neofetch)  |     System information tool     |                |
 
-* **Java**
+### Languages & Frameworks
 
-* **FZF**
+- **Java**: OpenJDK 17
 
-* **Zoxide**
+- **Node.js**: Managed via nvm
 
-* **bat**
+- **Big Data**: Apache Spark
 
-* **tldr**
+- **Cloud/AI**: Google Cloud SDK, LM Studio CLI
 
-* **duf**
+## 🚀 Installation
 
-Needed for Neovim:
+### 1. Prerequisites
 
-* **Ripgrep**: Needed for Telescope
+Ensure you have [Homebrew](https://brew.sh/) and `git` installed:
 
-Lsp must haves:
+```bash
+/bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
+```
 
-* **pyright**: I needed to add it manually due to a npm error :(
+### 2. Install Dependencies
 
-##   Installation
+This command installs all binary dependencies required by my `.zshrc`:
 
-```shell
-#   Cloning the repo
-git clone https://github.com/olefSch/dotfiles.git
+```bash
+# Core Tools & CLI Enhancements
+brew install neovim starship zoxide fzf bat duf tealdeer topgrade atuin neofetch openssl
 
-#   Navigating into the dotfiles repo
-cd dotfiles
+# Languages & Frameworks
+brew install openjdk@17 apache-spark
 
-#   Creating an executable script
+# Note: NVM and Zinit are handled automatically by the .zshrc script if missing.
+```
+
+### 3. Setup Dotfiles
+
+The setup should be handle by the `stow_script`. Ensure that you backup your configuration before.
+
+```bash
+# 1. Clone repository
+git clone https://github.com/olefSch/dotfiles.git ~/dotfiles
+
+# 2. go into it
+cd ~/dotfiles
+
+# 3. Run the stow setup script
 chmod +x stow_script.sh
-
-#   Executing the script to create the symlinks
 ./stow_script.sh
 ```
 
-##   Target Dotfiles Structure
+## ⌨️ Keybindings & Aliases
 
-This will be the final structure which gets created after executing the \`stow_script.sh\`:
+### Shell Aliases
+
+I use these aliases to map standard commands to their modern equivalents:
+
+| Alias       | Command            | Description                         |
+| :---------- | :----------------- | :---------------------------------- |
+| `cat`       | `bat`              | Syntax highlighted file reading     |
+| `df`        | `duf`              | Visual disk usage                   |
+| `man`       | `tldr`             | Simplified man pages                |
+| `ls`        | `ls --color`       | Colored directory listing           |
+| `update`    | `topgrade`         | Updates system, brew, plugins, etc. |
+| `v` / `vim` | `nvim`             | Opens Neovim                        |
+| `cd`        | `z`                | Smart directory jumping             |
+| `f`         | `fzf --preview...` | File fuzzy finder with preview      |
+
+### Zsh Keybinds
+
+| Key          | Action                                 |
+| :----------- | :------------------------------------- |
+| `Ctrl` + `f` | **Accept Autosuggestion** (Ghost text) |
+| `Ctrl` + `k` | History Search Up                      |
+| `Ctrl` + `j` | History Search Down                    |
+
+## 📂 Structure
+
+The repository is organized into packages for **GNU Stow**:
 
 ```
-.
-├── .config/
-│   ├── atuin/
-│   │   └── config.toml
-│   ├── ghostty/
-│   │   └── config
-│   ├── neofetch/
-│   │   ├── bmo.txt
-│   │   └── config.conf
-│   ├── neovim/
-│   │   ├── lua/
-│   │   │   └── all_configs.lua
-│   │   ├── init.lua
-│   │   ├── lazy-lock.json
-│   │   └── lazyvim.json
-│   ├── starship/
-│   │   └── starship.toml
-│   └── topgrade.toml
-└── .zshrc
+~/dotfiles/
+├── stow_script.sh           # Stow automation script
+├── zsh/                 # Shell configuration
+│   └── .zshrc
+├── nvim/                # Neovim config (stowed to ~/.config/nvim)
+├── starship/            # Prompt config (stowed to ~/.config/starship)
+├── ghostty/             # Terminal config (stowed to ~/.config/ghostty)
+└── ...                  # Other packages (atuin, neofetch, etc.)
 ```
+
+## ⚙️ Configuration Notes
+
+- **Environment Variables**: I use a `.env` file in `$HOME` for sensitive tokens. The `.zshrc` automatically loads this.
+
+- **Java**: `JAVA_HOME` is set to OpenJDK 17 via Homebrew.
