@@ -63,7 +63,7 @@ This command installs all binary dependencies required by my `.zshrc`:
 
 ```bash
 # Core Tools & CLI Enhancements
-brew install neovim starship zoxide fzf bat duf tealdeer topgrade atuin neofetch openssl
+brew install stow neovim starship zoxide fzf bat duf tealdeer topgrade atuin neofetch openssl
 
 # Languages & Frameworks
 brew install openjdk@17 apache-spark
