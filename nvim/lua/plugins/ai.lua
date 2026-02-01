@@ -4,14 +4,12 @@ return {
     event = "InsertEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      local db_host = os.getenv("DATABRICKS_HOST")
+      local endpoint = os.getenv("MY_ENDPOINT")
 
-      if not db_host then
-        vim.notify("Minuet: DATABRICKS_HOST not set. Check your .env or .zshrc", vim.log.levels.WARN)
+      if not endpoint then
+        vim.notify("Minuet: Endpoint not set. Check your .env or .zshrc", vim.log.levels.WARN)
         return
       end
-
-      local model_name = "databricks-meta-llama-3-3-70b-instruct"
 
       require("minuet").setup({
         virtualtext = {
@@ -38,9 +36,9 @@ return {
         debounce = 400,
         provider_options = {
           openai_compatible = {
-            model = model_name,
-            end_point = string.format("%s/serving-endpoints/%s/invocations", db_host, model_name),
-            api_key = "DATABRICKS_TOKEN",
+            model = os.getenv("MODEL_NAME"),
+            end_point = endpoint,
+            api_key = "TOKEN",
             stream = true,
             optional = {
               max_tokens = 128,
