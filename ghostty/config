@@ -10,4 +10,4 @@ mouse-hide-while-typing = true
 
 theme = "Kanagawa Wave"
 
-macos-option-as-alt = left
+macos-option-as-alt = right
