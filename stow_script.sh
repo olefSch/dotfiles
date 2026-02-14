@@ -26,43 +26,52 @@ stow_package() {
     echo "Error: Failed to create target directory '$target_dir'."
     return 1
   fi
- 
 
   # Ask for confirmation
   read -r -p "Do you want to stow the '$package' package? (y/n): " response
   case "$response" in
-    [Yy]* )
-      # Check for and delete existing target files
-      find "$STOW_DIR/$package" -type f -print0 | while IFS= read -r -d $'\0' source_file; do
-        target_file="${target_dir}/${source_file#$STOW_DIR/$package/}"
-        if [ -e "$target_file" ]; then
-          echo "Deleting existing file: '$target_file'"
-          rm -f "$target_file"
-          if [ $? -ne 0 ]; then
-            echo "Error: Failed to delete existing file '$target_file'."
-            return 1
-          fi
-       fi
-      done
-      
-      echo "Stowing '$package'..."
-      # Stow the package with the specified target
-      stow -t "$target_dir" "$package"
-      if [ $? -eq 0 ]; then
-        echo "'$package' stowed successfully."
-      else
-        echo "Error: Stowing '$package' failed."
-        return 1
+  [Yy]*)
+    # Check for and delete existing target files
+    find "$STOW_DIR/$package" -type f -print0 | while IFS= read -r -d $'\0' source_file; do
+      target_file="${target_dir}/${source_file#$STOW_DIR/$package/}"
+      if [ -e "$target_file" ]; then
+        echo "Deleting existing file: '$target_file'"
+        rm -f "$target_file"
+        if [ $? -ne 0 ]; then
+          echo "Error: Failed to delete existing file '$target_file'."
+          return 1
+        fi
       fi
-      ;;
-    [Nn]* )
-      echo "Stowing '$package' cancelled."
-      return 0
-      ;;
-    * )
-      echo "Invalid response. Stowing '$package' cancelled."
+    done
+
+    echo "Stowing '$package'..."
+    # Stow the package with the specified target
+    stow -t "$target_dir" "$package"
+    if [ $? -eq 0 ]; then
+      echo "'$package' stowed successfully."
+      if [ "$package" == "tmux" ]; then
+        TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+        if [ ! -d "$TPM_DIR" ]; then
+          echo "TPM not found. Installing Tmux Plugin Manager..."
+          mkdir -p "$HOME/.config/tmux/plugins"
+          git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+        else
+          echo "TPM already installed. Skipping clone."
+        fi
+      fi
+    else
+      echo "Error: Stowing '$package' failed."
       return 1
-      ;;
+    fi
+    ;;
+  [Nn]*)
+    echo "Stowing '$package' cancelled."
+    return 0
+    ;;
+  *)
+    echo "Invalid response. Stowing '$package' cancelled."
+    return 1
+    ;;
   esac
 }
 
@@ -76,6 +85,7 @@ stow_package "ghostty" ".config/ghostty"
 stow_package "topgrade" ".config"
 stow_package "atuin" ".config/atuin"
 stow_package "neofetch" ".config/neofetch"
+stow_package "tmux" ".config/tmux"
 
 # rm only for nvim directories
 rm -rf ~/.local/state/nvim
