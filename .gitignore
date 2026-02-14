@@ -15,3 +15,7 @@ session.vim
 # pre-commit / testing caches
 .cache/
 .pytest_cache/
+
+# for tmux plugins to exclude
+
+tmux/plugins/
