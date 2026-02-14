@@ -1,20 +1,31 @@
 return {
   {
-    "rebelot/kanagawa.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     opts = {
-      compile = true,
-      undercurl = true,
-      commentStyle = { italic = true },
-      keywordStyle = { italic = true },
-      transparent = false,
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      transparent_background = false,
+      term_colors = true,
+      compile = {
+        enabled = true,
+        path = vim.fn.stdpath("cache") .. "/catppuccin",
+      },
+      styles = {
+        comments = { "italic" },
+        keywords = { "italic" },
+      },
+      integrations = {
+        snacks = true,
+        lazyvim = true,
+      },
     },
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa-wave",
+      colorscheme = "catppuccin",
     },
   },
   {
