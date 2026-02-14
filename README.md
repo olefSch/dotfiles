@@ -1,6 +1,8 @@
 # ⚡️ macOS Dotfiles
 
-This repository hosts my personal development environment configuration for macOS. It is built around **Zsh**, **Neovim**, and **Ghostty**, using **Zinit** to manage plugins efficiently.
+This repository hosts my personal development environment configuration for
+macOS. It is built around **Zsh**, **Neovim**, and **Ghostty**, using **Zinit**
+to manage plugins efficiently.
 
 ![bmo](./images/bmo.png)
 
@@ -14,28 +16,34 @@ Here are the core tools and CLIs I use in my daily workflow:
 
 - **Terminal**: [Ghostty](https://github.com/ghostty-org/ghostty)
 
-- **Shell**: Zsh (managed with [Zinit](https://github.com/zdharma-continuum/zinit))
+- **Shell**: Zsh (managed with
+  [Zinit](https://github.com/zdharma-continuum/zinit))
 
 - **Prompt**: [Starship](https://starship.rs/)
 
-- **Editor**: [Neovim](https://neovim.io/) ([LazyVim](https://www.lazyvim.org/) distribution)
+- **Editor**: [Neovim](https://neovim.io/) ([LazyVim](https://www.lazyvim.org/)
+  distribution)
+
+- **Multiplexer**: [Tmux](https://github.com/tmux/tmux)
 
 - **Font**: Nerd Fonts (Required for icons)
 
 ### Core Utilities
 
-I have replaced many standard Unix commands with modern Rust-based alternatives for better performance and visuals.
+I have replaced many standard Unix commands with modern Rust-based alternatives
+for better performance and visuals.
 
-|                        Tool                         |           Description           |    Replaced    |
-| :-------------------------------------------------: | :-----------------------------: | :------------: |
-|        [bat](https://github.com/sharkdp/bat)        | Syntax highlighted file reading |     `cat`      |
-|        [duf](https://github.com/muesli/duf)         |     Disk Usage/Free Utility     |      `df`      |
-|     [tldr](https://github.com/tldr-pages/tldr)      |   Fast implementation of tldr   |     `man`      |
-|   [zoxide](https://github.com/ajeetdsouza/zoxide)   |       Smarter cd command        |      `cd`      |
-|       [fzf](https://github.com/junegunn/fzf)        |    Command-line fuzzy finder    |     search     |
-|      [atuin](https://github.com/atuinsh/atuin)      |      Magical shell history      |   `history`    |
-| [topgrade](https://github.com/topgrade-rs/topgrade) |       Upgrade everything        | manual updates |
-| [neofetch](https://github.com/dylanaraps/neofetch)  |     System information tool     |                |
+|                        Tool                         |           Description           |                   Replaced                    |
+| :-------------------------------------------------: | :-----------------------------: | :-------------------------------------------: |
+|        [bat](https://github.com/sharkdp/bat)        | Syntax highlighted file reading |                     `cat`                     |
+|        [duf](https://github.com/muesli/duf)         |     Disk Usage/Free Utility     |                     `df`                      |
+|     [tldr](https://github.com/tldr-pages/tldr)      |   Fast implementation of tldr   |                     `man`                     |
+|   [zoxide](https://github.com/ajeetdsouza/zoxide)   |       Smarter cd command        |                     `cd`                      |
+|       [fzf](https://github.com/junegunn/fzf)        |    Command-line fuzzy finder    |                    search                     |
+|      [atuin](https://github.com/atuinsh/atuin)      |      Magical shell history      |                   `history`                   |
+| [topgrade](https://github.com/topgrade-rs/topgrade) |       Upgrade everything        |                manual updates                 |
+| [neofetch](https://github.com/dylanaraps/neofetch)  |     System information tool     |                                               |
+|        [tmux](https://github.com/tmux/tmux)         |           Multiplexer           | zeoxide would be the new one, tmux is the old |
 
 ### Languages & Frameworks
 
@@ -63,17 +71,31 @@ This command installs all binary dependencies required by my `.zshrc`:
 
 ```bash
 # Core Tools & CLI Enhancements
-brew install stow neovim starship zoxide fzf bat duf tealdeer topgrade atuin neofetch openssl
+brew install \
+  stow \
+  neovim \
+  starship \
+  zoxide \
+  fzf \
+  bat \
+  duf \
+  tealdeer \
+  topgrade \
+  atuin \
+  neofetch \
+  openssl \
+  tmux
 
 # Languages & Frameworks
-brew install openjdk@17 apache-spark
+brew install openjdk@17 uv
 
 # Note: NVM and Zinit are handled automatically by the .zshrc script if missing.
 ```
 
 ### 3. Setup Dotfiles
 
-The setup should be handle by the `stow_script`. Ensure that you backup your configuration before.
+The setup should be handle by the `stow_script`. Ensure that you backup your
+configuration before.
 
 ```bash
 # 1. Clone repository
@@ -129,6 +151,7 @@ The repository is organized into packages for **GNU Stow**:
 
 ## ⚙️ Configuration Notes
 
-- **Environment Variables**: I use a `.env` file in `$HOME` for sensitive tokens. The `.zshrc` automatically loads this.
+- **Environment Variables**: I use a `.env` file in `$HOME` for sensitive
+  tokens. The `.zshrc` automatically loads this.
 
 - **Java**: `JAVA_HOME` is set to OpenJDK 17 via Homebrew.
