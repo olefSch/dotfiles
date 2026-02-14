@@ -2,7 +2,7 @@ add_newline = true
 format = """$directory$character"""
 right_format = """$all"""
 
-[character] 
+[character]
 success_symbol = '[➜](bold green)'
 error_symbol = '[➜](bold red)'
 
@@ -79,7 +79,5 @@ symbol = " "
 
 [time]
 format = "🕙 [$time]($style) "
-time_format = "%T" 
-disabled = false
-
-
+time_format = "%T"
+disabled = true
