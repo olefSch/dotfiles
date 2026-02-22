@@ -66,7 +66,8 @@ if [ -f '/Users/schildt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/s
 
 
 ## ----- Java Path -----
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 ## ----- Node Shit -----
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
