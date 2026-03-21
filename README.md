@@ -6,54 +6,11 @@ to manage plugins efficiently.
 
 ![bmo](./images/bmo.png)
 
-## 🛠 My Tech Stack
+## 🛠 Tooling & Stack
 
-Here are the core tools and CLIs I use in my daily workflow:
+I use a variety of modern CLI tools and applications to enhance my workflow. You can find the full list of tools, descriptions, and examples in:
 
-### Core System
-
-- **OS**: macOS
-
-- **Terminal**: [Ghostty](https://github.com/ghostty-org/ghostty)
-
-- **Shell**: Zsh (managed with
-  [Zinit](https://github.com/zdharma-continuum/zinit))
-
-- **Prompt**: [Starship](https://starship.rs/)
-
-- **Editor**: [Neovim](https://neovim.io/) ([LazyVim](https://www.lazyvim.org/)
-  distribution)
-
-- **Multiplexer**: [Tmux](https://github.com/tmux/tmux)
-
-- **Font**: Nerd Fonts (Required for icons)
-
-### Core Utilities
-
-I have replaced many standard Unix commands with modern Rust-based alternatives
-for better performance and visuals.
-
-|                        Tool                         |           Description           |                   Replaced                    |
-| :-------------------------------------------------: | :-----------------------------: | :-------------------------------------------: |
-|        [bat](https://github.com/sharkdp/bat)        | Syntax highlighted file reading |                     `cat`                     |
-|        [duf](https://github.com/muesli/duf)         |     Disk Usage/Free Utility     |                     `df`                      |
-|     [tldr](https://github.com/tldr-pages/tldr)      |   Fast implementation of tldr   |                     `man`                     |
-|   [zoxide](https://github.com/ajeetdsouza/zoxide)   |       Smarter cd command        |                     `cd`                      |
-|       [fzf](https://github.com/junegunn/fzf)        |    Command-line fuzzy finder    |                    search                     |
-|      [atuin](https://github.com/atuinsh/atuin)      |      Magical shell history      |                   `history`                   |
-| [topgrade](https://github.com/topgrade-rs/topgrade) |       Upgrade everything        |                manual updates                 |
-| [neofetch](https://github.com/dylanaraps/neofetch)  |     System information tool     |                                               |
-|        [tmux](https://github.com/tmux/tmux)         |           Multiplexer           | zeoxide would be the new one, tmux is the old |
-
-### Languages & Frameworks
-
-- **Java**: OpenJDK 17
-
-- **Node.js**: Managed via nvm
-
-- **Big Data**: Apache Spark
-
-- **Cloud/AI**: Google Cloud SDK, LM Studio CLI
+👉 **[Detailed Tooling & Stack Guide](./docs/tools.md)**
 
 ## 🚀 Installation
 
@@ -62,34 +19,16 @@ for better performance and visuals.
 Ensure you have [Homebrew](https://brew.sh/) and `git` installed:
 
 ```bash
-/bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ### 2. Install Dependencies
 
-This command installs all binary dependencies required by my `.zshrc`:
+This repository includes a `Brewfile` that lists all my formulae, casks, and VS Code extensions. To install everything at once, run:
 
 ```bash
-# Core Tools & CLI Enhancements
-brew install \
-  stow \
-  neovim \
-  starship \
-  zoxide \
-  fzf \
-  bat \
-  duf \
-  tealdeer \
-  topgrade \
-  atuin \
-  neofetch \
-  openssl \
-  tmux
-
-# Languages & Frameworks
-brew install openjdk@17 uv
-
-# Note: NVM and Zinit are handled automatically by the .zshrc script if missing.
+# Install all dependencies from the Brewfile
+brew bundle install
 ```
 
 ### 3. Setup Dotfiles
