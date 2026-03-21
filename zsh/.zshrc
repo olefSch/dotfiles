@@ -13,7 +13,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 ## ----- Alias -----
 alias cat='bat'
 alias df="duf"
-alias f="fzf --preview 'bat --style=numbers --color=always {}'"
+alias f="tv"
 alias man="tldr"
 alias update="topgrade"
 alias ls="ls --color"
@@ -77,8 +77,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-## ----- FZF -----
-eval "$(fzf --zsh)"
+## ----- TV -----
+eval "$(tv init zsh)"
+bindkey '^T' tv_smart_autocomplete
 
 ## ----- Atuin -----
 . "/opt/homebrew/opt/atuin/bin/"
@@ -92,16 +93,8 @@ bindkey '^k' up-history
 bindkey '^j' down-history
 bindkey '^f' accept-line
 
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+
 ## ----- Neofetch -----
 neofetch
-
-export LDFLAGS="-L$(brew --prefix openssl)/lib"
-export CPPFLAGS="-I$(brew --prefix openssl)/include"
-
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/schildt/.lmstudio/bin"
