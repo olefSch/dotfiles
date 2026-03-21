@@ -86,6 +86,7 @@ stow_package "topgrade" ".config"
 stow_package "atuin" ".config/atuin"
 stow_package "neofetch" ".config/neofetch"
 stow_package "tmux" ".config/tmux"
+stow_package "television" ".config/television"
 
 # rm only for nvim directories
 rm -rf ~/.local/state/nvim
