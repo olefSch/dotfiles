@@ -1,0 +1,9 @@
+.git
+.DS_Store
+node_modules/
+
+nvim/lazy-lock.json
+nvim/lazyvim.json
+
+images/
+neofetch/bmo.txt
