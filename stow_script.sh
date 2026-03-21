@@ -88,10 +88,18 @@ stow_package "neofetch" ".config/neofetch"
 stow_package "tmux" ".config/tmux"
 stow_package "television" ".config/television"
 
-# rm only for nvim directories
-rm -rf ~/.local/state/nvim
-rm -rf ~/.local/share/nvim
-rm -rf ~/.cache/nvim
+read -r -p "Do you want to completely clear Neovim state, share, and cache directories? (y/n): " clear_nvim
+case "$clear_nvim" in
+[Yy]*)
+  echo "Clearing Neovim directories..."
+  rm -rf ~/.local/state/nvim
+  rm -rf ~/.local/share/nvim
+  rm -rf ~/.cache/nvim
+  ;;
+*)
+  echo "Skipping Neovim cache clear."
+  ;;
+esac
 stow_package "nvim" ".config/nvim"
 
 echo "Script finished."
