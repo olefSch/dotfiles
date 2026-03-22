@@ -1,6 +1,7 @@
 # 🛠 Tools & Applications
 
-This document lists all the tools, applications, and extensions managed in this dotfiles repository, as defined in the [Brewfile](../Brewfile).
+This document lists all the tools, applications, and extensions managed in this
+dotfiles repository, as defined in the [Brewfile](../Brewfile).
 
 ## 🍺 Homebrew Formulae (CLI Tools)
 
@@ -41,6 +42,7 @@ This document lists all the tools, applications, and extensions managed in this 
 | **scc**                      | Sloc, Cloc and Code: count lines of code                      | `scc`                            |
 | **starship**                 | The minimal, blazing-fast, and infinitely customizable prompt | (Auto-loaded)                    |
 | **stow**                     | GNU Stow is a symlink farm manager                            | `stow zsh`                       |
+| **television**               | General purpose fuzzy finder TUI                              | `tv`                             |
 | **tldr**                     | Simplified and community-driven man pages                     | `tldr tar`                       |
 | **tmux**                     | Terminal multiplexer                                          | `tmux new -s session`            |
 | **topgrade**                 | Upgrade everything                                            | `topgrade`                       |

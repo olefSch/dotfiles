@@ -4,11 +4,12 @@ This repository hosts my personal development environment configuration for
 macOS. It is built around **Zsh**, **Neovim**, and **Ghostty**, using **Zinit**
 to manage plugins efficiently.
 
-![bmo](./images/bmo.png)
+![bmo](./docs/images/bmo.png)
 
 ## 🛠 Tooling & Stack
 
-I use a variety of modern CLI tools and applications to enhance my workflow. You can find the full list of tools, descriptions, and examples in:
+I use a variety of modern CLI tools and applications to enhance my workflow. You
+can find the full list of tools, descriptions, and examples in:
 
 👉 **[Detailed Tooling & Stack Guide](./docs/tools.md)**
 
@@ -24,7 +25,8 @@ Ensure you have [Homebrew](https://brew.sh/) and `git` installed:
 
 ### 2. Install Dependencies
 
-This repository includes a `Brewfile` that lists all my formulae, casks, and VS Code extensions. To install everything at once, run:
+This repository includes a `Brewfile` that lists all my formulae, casks, and VS
+Code extensions. To install everything at once, run:
 
 ```bash
 # Install all dependencies from the Brewfile
