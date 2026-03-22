@@ -1,0 +1,18 @@
+[metadata]
+name = "gcp-projects"
+description = "List, preview, and switch active GCP projects"
+requirements = ["gcloud", "bat"]
+
+[source]
+command = "gcloud projects list --format='value(projectId)'"
+
+[preview]
+command = "gcloud projects describe {} --format=yaml | bat -l yaml --color=always"
+
+[keybindings]
+enter = "actions:set_project"
+
+[actions.set_project]
+description = "Set as the active gcloud project"
+command = "gcloud config set project {}"
+mode = "execute"

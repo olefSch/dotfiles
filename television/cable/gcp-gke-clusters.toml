@@ -1,0 +1,23 @@
+[metadata]
+name = "gke-clusters"
+description = "List GKE clusters, preview metadata, and authenticate kubectl"
+requirements = ["gcloud", "bat"]
+
+[source]
+command = "gcloud container clusters list --format='value(name, location)'"
+output = "{}"
+
+[preview]
+command = "gcloud container clusters describe {split:\\t:0} --location {split:\\t:1} --format=yaml | bat -l yaml --color=always"
+
+[ui]
+preview_panel = { size = 60 }
+
+[keybindings]
+enter = "actions:get_credentials"
+
+[actions.get_credentials]
+description = "Authenticate kubectl to this GKE cluster"
+command = "gcloud container clusters get-credentials {split:\\t:0} --location {split:\\t:1}"
+shell = "bash"
+mode = "execute"

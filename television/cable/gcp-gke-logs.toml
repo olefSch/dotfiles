@@ -1,0 +1,51 @@
+[metadata]
+name = "gke-cluster-logs"
+description = "List clusters in current project and stream logs via GCP (Bypasses kubectl)"
+requirements = ["gcloud", "jq", "bat"]
+
+[source]
+command = "gcloud container clusters list --format='value(name, location)'"
+output = "{}"
+
+[preview]
+command = """
+gcloud logging read 'resource.type="k8s_container" AND resource.labels.cluster_name="{split:\\t:0}"' \
+  --limit=30 \
+  --format="json" | jq -r '.[].textPayload' | bat -l log --color=always
+"""
+
+[ui]
+preview_panel = { size = 70 }
+
+[keybindings]
+enter = "actions:read_logs"
+ctrl-o = "actions:open_browser"
+
+[actions.read_logs]
+description = "Read recent logs in a fullscreen pager"
+mode = "fork"
+shell = "bash"
+command = """
+# Safely extract the cluster name from the highlighted line using awk
+CLUSTER=$(echo "{}" | awk '{print $1}')
+
+echo "⏳ Fetching the last 200 logs for $CLUSTER..."
+
+# Fetch the logs and pipe them into 'bat' for a scrollable, colorful fullscreen view
+gcloud logging read "resource.type=\\"k8s_container\\" AND resource.labels.cluster_name=\\"$CLUSTER\\"" \
+  --limit=200 \
+  --format="value(timestamp, resource.labels.namespace_name, resource.labels.pod_name, textPayload)" \
+  | bat -l log --color=always --style=plain --paging=always
+"""
+
+[actions.open_browser]
+description = "Open these cluster logs in GCP Log Explorer (Browser)"
+mode = "execute"
+shell = "bash"
+command = """
+CLUSTER="{split:\\t:0}"
+PROJECT=$(gcloud config get-value project)
+# URL encodes the query and opens your default web browser directly to the logs!
+QUERY="resource.type=%22k8s_container%22%20resource.labels.cluster_name=%22${CLUSTER}%22"
+open "https://console.cloud.google.com/logs/query;query=${QUERY}?project=${PROJECT}"
+"""
