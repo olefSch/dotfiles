@@ -57,6 +57,20 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
 
+# ----- Functions -----
+function dbt() {
+  export CATALOG="${1:-main}"
+  export DATABRICKS_CONFIG_PROFILE="${2:-${DATABRICKS_CONFIG_PROFILE:-DEFAULT}}"
+  echo "🔍 Searching Catalog: $CATALOG (Profile: $DATABRICKS_CONFIG_PROFILE)"
+  tv databricks-tables
+}
+
+function dbj() {
+  export DATABRICKS_CONFIG_PROFILE="${1:-DEFAULT}"
+  echo "🎯 Using Databricks Profile: $DATABRICKS_CONFIG_PROFILE"
+  tv databricks-jobs
+}
+
 ## ----- Google CLI -----
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/schildt/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/schildt/google-cloud-sdk/path.zsh.inc'; fi
