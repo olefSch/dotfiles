@@ -174,7 +174,5 @@ fallback_channel = "files"
 
 
 [shell_integration.keybindings]
-# controls which key binding should trigger tv
-# for shell autocomplete
 "smart_autocomplete" = "ctrl-t"
 # no history :)
