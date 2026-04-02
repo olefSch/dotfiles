@@ -48,6 +48,7 @@ dotfiles repository, as defined in the [Brewfile](../Brewfile).
 | **topgrade**                 | Upgrade everything                                            | `topgrade`                       |
 | **tree**                     | Display directory structure as a tree                         | `tree`                           |
 | **uv**                       | An extremely fast Python package installer and resolver       | `uv pip install ...`             |
+| **worktrunk**                | CLI for Git worktree management                               | `wt`                             |
 | **wtf**                      | Personal dashboard for your terminal                          | `wtfutil`                        |
 | **zoxide**                   | Smarter cd command                                            | `z path/to/dir`                  |
 

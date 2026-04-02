@@ -89,6 +89,9 @@ eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
+## ----- Worktrunk -----
+eval "$(wt config shell init zsh)"
+
 ## ----- Keybinds -----
 bindkey '^k' up-history
 bindkey '^j' down-history
