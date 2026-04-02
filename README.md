@@ -23,7 +23,7 @@ Ensure you have [Homebrew](https://brew.sh/) and `git` installed:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### 3. Setup Dotfiles
+### 2. Setup Dotfiles
 
 The setup should be handle by the `stow_script`. Ensure that you backup your
 configuration before.
