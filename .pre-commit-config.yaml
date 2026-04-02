@@ -34,4 +34,5 @@ repos:
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
+        exclude: ^nvim/lazy-lock\.json$
         types_or: [yaml, markdown, json]
