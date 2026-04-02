@@ -19,7 +19,6 @@ alias update="topgrade"
 alias ls="ls --color"
 alias v="nvim"
 alias vim="nvim"
-alias cd="z"
 
 ## ----- Zinit -----
 ZINIT_HOME="$XDG_CONFIG_HOME/zinit/zinit.git"
@@ -31,15 +30,16 @@ fi
 
 source "$ZINIT_HOME/zinit.zsh"
 
-## ----- Zinit Plugins -----
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 
+## ----- Zinit Plugins -----
+zinit light zsh-users/zsh-completions
 zinit snippet OMZP::git
 
 autoload -U compinit && compinit
+
+zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
 
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
@@ -87,11 +87,12 @@ eval "$(atuin init zsh)"
 
 ## ----- Zoxide -----
 eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 ## ----- Keybinds -----
 bindkey '^k' up-history
 bindkey '^j' down-history
-bindkey '^f' accept-line
+bindkey '^f' autosuggest-accept
 
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
