@@ -23,16 +23,6 @@ Ensure you have [Homebrew](https://brew.sh/) and `git` installed:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### 2. Install Dependencies
-
-This repository includes a `Brewfile` that lists all my formulae, casks, and VS
-Code extensions. To install everything at once, run:
-
-```bash
-# Install all dependencies from the Brewfile
-brew bundle install
-```
-
 ### 3. Setup Dotfiles
 
 The setup should be handle by the `stow_script`. Ensure that you backup your
@@ -44,8 +34,21 @@ git clone https://github.com/olefSch/dotfiles.git ~/dotfiles
 
 # 2. go into it
 cd ~/dotfiles
+```
 
-# 3. Run the stow setup script
+This repository includes a `Brewfile` that lists all my formulae, casks, and VS
+Code extensions. To install everything at once, run:
+
+```bash
+# Install all dependencies from the Brewfile
+brew bundle install
+```
+
+The last step is to run the stow script to get the config synced via simlinks to
+all the config locations.
+
+```bash
+# run stow scirpt
 chmod +x stow_script.sh
 ./stow_script.sh
 ```
