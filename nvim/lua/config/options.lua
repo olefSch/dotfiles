@@ -3,8 +3,8 @@
 -- Add any additional options here
 --
 vim.filetype.add({
-  pattern = {
-    [".*%.yaml%.tftpl"] = "yaml",
-    [".*%.yml%.tftpl"] = "yaml",
-  },
-})
+    pattern = {
+      [".*%.yaml%.tftpl"] = "yaml",
+      [".*%.yml%.tftpl"] = "yaml",
+    },
+  })

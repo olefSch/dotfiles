@@ -1,5 +1,5 @@
 add_newline = true
-format = """$directory$character"""
+format = """$username$directory$character"""
 right_format = """$all"""
 
 [character]
@@ -8,7 +8,7 @@ error_symbol = '[➜](bold red)'
 
 [directory]
 read_only = " 󰌾"
-style = "bold blue"
+style = "bold yellow"
 
 [docker_context]
 symbol = " "
@@ -81,3 +81,28 @@ symbol = " "
 format = "🕙 [$time]($style) "
 time_format = "%T"
 disabled = true
+
+[kubernetes]
+disabled = false
+symbol = "󱃾 "
+format = '[$symbol$context( \($namespace\))]($style) '
+style = "cyan bold"
+
+[custom.vpn]
+disabled = false
+command = "ifconfig tun0 | grep 'inet ' | awk '{print $2}' || ip -4 addr show tun0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}'"
+when = "ifconfig tun0 || ip a show tun0"
+symbol = " "
+style = "bold red"
+format = "[$symbol$output]($style) "
+
+[cmd_duration]
+min_time = 2_000
+format = " [⏳ $duration]($style)"
+style = "bold yellow"
+
+[username]
+show_always = true
+format = "[\\[$user\\]]($style) "
+style_user = "bold blue"
+style_root = "bold red"

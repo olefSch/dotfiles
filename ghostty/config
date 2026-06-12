@@ -1,13 +1,18 @@
-font-family = BerkeleyMono Nerd Font
-font-size = 14
+# --- Schriftart & Darstellung ---
+font-family = "Hack Nerd Font"
+font-size = 15
+theme = "Catppuccin Mocha"
 
+# --- Fenster & Verhalten ---
 window-save-state = always
 window-height = 40
 window-width = 140
+window-decoration = false
 
+# --- Transparenz & Blur (Frosted Glass) ---
+background-opacity = 0.75
+background-blur-radius = 20
+
+# --- Sonstiges ---
 mouse-hide-while-typing = true
-
-
-theme = catppuccin-mocha
-
 macos-option-as-alt = right

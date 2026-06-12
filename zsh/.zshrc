@@ -20,6 +20,16 @@ alias ls="ls --color"
 alias v="nvim"
 alias vim="nvim"
 
+# Kali Navigation & Color Aliases
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+
+# SSH connection optimization
+alias ssh='env TERM=xterm-256color ssh'
+
 ## ----- Zinit -----
 ZINIT_HOME="$XDG_CONFIG_HOME/zinit/zinit.git"
 
@@ -29,7 +39,6 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 source "$ZINIT_HOME/zinit.zsh"
-
 
 ## ----- Zinit Plugins -----
 zinit light zsh-users/zsh-completions
@@ -57,21 +66,13 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
 
-## ----- Google CLI -----
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/schildt/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/schildt/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/schildt/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/schildt/google-cloud-sdk/completion.zsh.inc'; fi
-
-
 ## ----- Java Path -----
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
 export PATH="$JAVA_HOME/bin:$PATH"
 
-## ----- Node Shit -----
+## ----- Node -----
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm, without auto-using the default version
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
 ## ----- Starship -----
 eval "$(starship init zsh)"
@@ -82,7 +83,6 @@ eval "$(tv init zsh)"
 bindkey '^T' tv_smart_autocomplete
 
 ## ----- Atuin -----
-. "/opt/homebrew/opt/atuin/bin/"
 eval "$(atuin init zsh)"
 
 ## ----- Zoxide -----
@@ -100,5 +100,5 @@ bindkey '^f' autosuggest-accept
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 
-## ----- Neofetch -----
-neofetch
+## ----- Fastfetch -----
+fastfetch

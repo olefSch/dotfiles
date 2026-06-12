@@ -84,7 +84,7 @@ stow_package "starship" ".config/starship"
 stow_package "ghostty" ".config/ghostty"
 stow_package "topgrade" ".config"
 stow_package "atuin" ".config/atuin"
-stow_package "neofetch" ".config/neofetch"
+stow_package "fastfetch" ".config/fastfetch"
 stow_package "tmux" ".config/tmux"
 stow_package "television" ".config/television"
 

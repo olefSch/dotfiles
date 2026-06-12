@@ -1,4 +1,4 @@
-# ⚡️ macOS Dotfiles
+# Personalized Dotfiles
 
 This repository hosts my personal development environment configuration for
 macOS. It is built around **Zsh**, **Neovim**, and **Ghostty**, using **Zinit**

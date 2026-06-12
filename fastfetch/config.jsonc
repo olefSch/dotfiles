@@ -1,0 +1,78 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "~/.config/fastfetch/avatar.txt",
+    "padding": {
+      "top": 1,
+      "right": 3
+    }
+  },
+  "display": {
+    "separator": " : ",
+    "color": {
+      "keys": "cyan"
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "color": {
+        "user": "red",
+        "at": "white",
+        "host": "blue"
+      }
+    },
+    {
+      "type": "os",
+      "key": " OS  ",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "uptime",
+      "key": " UP  ",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "cpu",
+      "key": "󰍛 CPU ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "gpu",
+      "key": " GPU ",
+      "keyColor": "blue"
+    },
+    {
+      "type": "memory",
+      "key": "󰟖 RAM ",
+      "keyColor": "green"
+    },
+    {
+      "type": "disk",
+      "key": " MEM ",
+      "keyColor": "green"
+    },
+    {
+      "type": "localip",
+      "key": "󰩟 IPv4",
+      "showIpv6": false,
+      "keyColor": "cyan"
+    },
+    {
+      "type": "localip",
+      "key": "󰩟 IPv6",
+      "showIpv4": false,
+      "keyColor": "cyan"
+    },
+    {
+      "type": "command",
+      "key": "󰖂 VPN1",
+      "keyColor": "red",
+      "text": "ts=$(tailscale ip -4 2>/dev/null); if [ -n \"$ts\" ]; then echo \"$ts (Tailscale Active)\"; else vpn=$(ifconfig | grep -A 1 -E 'utun|tun' | grep 'inet ' | awk '{print $2}' | head -n 1); if [ -n \"$vpn\" ]; then echo \"$vpn (Secured Tunnel Active)\"; else echo \"Disconnected\"; fi; fi"
+    },
+    {
+      "type": "custom",
+      "format": "{#cyan}󰈸 {#blue}󱥰 {#green}󰩃 {#red} {#cyan} {#blue}󰆥 {#green}󰤄 {#cyan} "
+    }
+  ]
+}
