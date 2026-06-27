@@ -8,6 +8,6 @@ window-width = 140
 mouse-hide-while-typing = true
 
 
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 macos-option-as-alt = right
