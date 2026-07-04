@@ -35,10 +35,11 @@ return {
         sections = {
           {
             section = "terminal",
-            cmd = "neofetch",
+            cmd = "env COLUMNS=100 fastfetch",
             random = 10,
-            indent = 4,
+            indent = -10,
             height = 15,
+            width = 80,
           },
           { section = "keys", gap = 1, padding = 1 },
           { section = "startup" },
