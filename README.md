@@ -40,7 +40,7 @@ This repository includes a `Brewfile` that lists all my formulae, casks, and VS
 Code extensions. To install everything at once, run:
 
 ```bash
-# Install all dependencies from the Brewfile
+# Install all dependencies from the Brewfile (sometimes multiple tries)
 brew bundle install
 ```
 
@@ -52,6 +52,18 @@ all the config locations.
 chmod +x stow_script.sh
 ./stow_script.sh
 ```
+
+### 3. Initialize Tmux Plugins
+
+The stow script automatically downloads the Tmux Plugin Manager (TPM), but you
+need to manually tell it to fetch your plugins (like the Catppuccin theme) the
+first time you use it.
+
+- Open a new terminal and start tmux by running `tmux`.
+- Press your tmux prefix key (default is `Ctrl` + `b`).
+- Press `I` (capital `i`).
+- Wait a few seconds for the plugins to install, and your status bar will
+  automatically update!
 
 ## ⌨️ Keybindings & Aliases
 
@@ -84,13 +96,15 @@ The repository is organized into packages for **GNU Stow**:
 
 ```
 ~/dotfiles/
-├── stow_script.sh           # Stow automation script
+├── stow_script.sh       # Stow automation script
 ├── zsh/                 # Shell configuration
 │   └── .zshrc
 ├── nvim/                # Neovim config (stowed to ~/.config/nvim)
 ├── starship/            # Prompt config (stowed to ~/.config/starship)
 ├── ghostty/             # Terminal config (stowed to ~/.config/ghostty)
-└── ...                  # Other packages (atuin, neofetch, etc.)
+├── tmux/                # Multiplexer config (stowed to ~/.config/tmux)
+├── fastfetch/           # System info config (stowed to ~/.config/fastfetch)
+└── ...                  # Other packages (atuin, television, etc.)
 ```
 
 ## ⚙️ Configuration Notes
