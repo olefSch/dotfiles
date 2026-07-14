@@ -1,0 +1,62 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "autoupdate": true,
+  "snapshot": true,
+
+  "compaction": {
+    "auto": true,
+    "prune": false,
+    "reserved": 10000,
+  },
+
+  "permission": {
+    "edit": "ask",
+    "bash": "ask",
+  },
+
+  "watcher": {
+    "ignore": [
+      // Project dependencies
+      "node_modules/**",
+      "dist/**",
+      ".git/**",
+
+      // Python ecosystem
+      ".venv/**",
+      "**/__pycache__/**",
+      "**/*.pyc",
+      "**/*.pyo",
+      "**/*.pyd",
+
+      // Python tooling caches
+      ".ruff_cache/**",
+      ".mypy_cache/**",
+      ".pytest_cache/**",
+      ".tox/**",
+      ".nox/**",
+
+      // Web build/cache folders
+      "**/.next/**",
+      "**/.nuxt/**",
+      "**/.output/**",
+      "**/build/**",
+
+      // OS and temporary files
+      "**/.DS_Store",
+      "**/Thumbs.db",
+      "**/tmp/**",
+    ],
+  },
+
+  "instructions": [
+    "CONTRIBUTING.md",
+    "docs/guidelines.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "~/.config/opencode/global-rules.md",
+  ],
+  // skills are automatically here: https://opencode.ai/docs/skills/#place-files
+
+  "plugin": [".opencode/plugins/graphify.js", "@dietrichgebert/ponytail"],
+}
