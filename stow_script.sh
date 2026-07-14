@@ -7,77 +7,61 @@ stow_package() {
   package="$1"
   target="$2"
 
-  # Check if the package directory exists in the dotfiles dir
+  # Verify package directory exists
   if [ ! -d "$STOW_DIR/$package" ]; then
-    echo "Error: Directory '$STOW_DIR/$package' not found in dotfiles directory."
+    echo "Error: Directory '$STOW_DIR/$package' not found."
     return 1
   fi
 
-  # Construct the full target directory path
-  if [ -n "$target" ]; then
-    target_dir="$TARGET_DIR_BASE/$target"
-  else
-    target_dir="$TARGET_DIR_BASE"
-  fi
-
-  # Create target directories
+  target_dir="${TARGET_DIR_BASE}/${target:-}"
   mkdir -p "$target_dir"
-  if [ $? -ne 0 ]; then
-    echo "Error: Failed to create target directory '$target_dir'."
-    return 1
+
+  # Ask to stow
+  read -r -p "Do you want to stow the '$package' package? (y/n): " response
+  if [[ ! "$response" =~ ^[Yy]$ ]]; then
+    echo "Skipping '$package'."
+    return 0
   fi
 
-  # Ask for confirmation
-  read -r -p "Do you want to stow the '$package' package? (y/n): " response
-  case "$response" in
-  [Yy]*)
-    # Check for and delete existing target files
-    find "$STOW_DIR/$package" -type f -print0 | while IFS= read -r -d $'\0' source_file; do
-      target_file="${target_dir}/${source_file#$STOW_DIR/$package/}"
-      if [ -e "$target_file" ]; then
-        echo "Deleting existing file: '$target_file'"
-        rm -f "$target_file"
-        if [ $? -ne 0 ]; then
-          echo "Error: Failed to delete existing file '$target_file'."
-          return 1
+  # Optional Pre-Clean Step
+  read -r -p "  [OPTIONAL] Clear pre-existing conflicts for '$package'? (y/n): " clean_response
+  if [[ "$clean_response" =~ ^[Yy]$ ]]; then
+    echo "  Scanning $target_dir for non-symlink conflicts..."
+    find "$target_dir" -maxdepth 1 -not -name "." | while read -r item; do
+      if [ -e "$item" ] && [ ! -L "$item" ]; then
+        echo "  Found non-symlink: $(basename "$item")"
+        read -r -p "    Delete this? (y/n): " delete_item
+        if [[ "$delete_item" =~ ^[Yy]$ ]]; then
+          rm -rf "$item"
+          echo "    Deleted."
         fi
       fi
     done
+  fi
 
-    echo "Stowing '$package'..."
-    # Stow the package with the specified target
-    stow -t "$target_dir" "$package"
-    if [ $? -eq 0 ]; then
-      echo "'$package' stowed successfully."
-      if [ "$package" == "tmux" ]; then
-        TPM_DIR="$HOME/.config/tmux/plugins/tpm"
-        if [ ! -d "$TPM_DIR" ]; then
-          echo "TPM not found. Installing Tmux Plugin Manager..."
-          mkdir -p "$HOME/.config/tmux/plugins"
-          git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-        else
-          echo "TPM already installed. Skipping clone."
-        fi
+  echo "  Stowing '$package'..."
+  stow -R -t "$target_dir" "$package"
+
+  if [ $? -eq 0 ]; then
+    echo "  '$package' stowed successfully."
+
+    # Specific post-stow logic
+    if [ "$package" == "tmux" ]; then
+      TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+      if [ ! -d "$TPM_DIR" ]; then
+        echo "  Installing Tmux Plugin Manager..."
+        mkdir -p "$HOME/.config/tmux/plugins"
+        git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
       fi
-    else
-      echo "Error: Stowing '$package' failed."
-      return 1
     fi
-    ;;
-  [Nn]*)
-    echo "Stowing '$package' cancelled."
-    return 0
-    ;;
-  *)
-    echo "Invalid response. Stowing '$package' cancelled."
+  else
+    echo "  Error: Stowing '$package' failed."
     return 1
-    ;;
-  esac
+  fi
 }
 
-# Main script execution
-
-echo "This script will use stow to create symlinks from the dotfiles directory."
+# --- Main Script ---
+echo "--- Dotfiles Synchronization Started ---"
 
 stow_package "zsh"
 stow_package "starship" ".config/starship"
@@ -85,23 +69,16 @@ stow_package "ghostty" ".config/ghostty"
 stow_package "topgrade" ".config"
 stow_package "atuin" ".config/atuin"
 stow_package "fastfetch" ".config/fastfetch"
+stow_package "opencode" ".config/opencode"
 stow_package "tmux" ".config/tmux"
 stow_package "television" ".config/television"
 
-read -r -p "Do you want to completely clear Neovim state, share, and cache directories? (y/n): " clear_nvim
-case "$clear_nvim" in
-[Yy]*)
-  echo "Clearing Neovim directories..."
-  rm -rf ~/.local/state/nvim
-  rm -rf ~/.local/share/nvim
-  rm -rf ~/.cache/nvim
-  ;;
-*)
-  echo "Skipping Neovim cache clear."
-  ;;
-esac
+# Neovim logic
+read -r -p "Clear Neovim state/cache? (y/n): " clear_nvim
+if [[ "$clear_nvim" =~ ^[Yy]$ ]]; then
+  echo "  Clearing Neovim directories..."
+  rm -rf ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+fi
 stow_package "nvim" ".config/nvim"
 
-echo "Script finished."
-
-exit 0
+echo "--- Synchronization finished ---"
