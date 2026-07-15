@@ -97,6 +97,9 @@ bindkey '^k' up-history
 bindkey '^j' down-history
 bindkey '^f' autosuggest-accept
 
+## ----- Go -----
+export PATH="$PATH:$(go env GOPATH)/bin"
+
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 
